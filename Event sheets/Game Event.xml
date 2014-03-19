@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Game Event</name>
+    <events>
+        <variable constant="0" name="OnFlying" sid="9729538707366253" static="0" type="number">0</variable>
+        <variable constant="0" name="isFlying" sid="4182927447878241" static="0" type="number">0</variable>
+        <event-group description="" sid="9362416301836017" title="System">
+            <sub-events>
+                <event-block sid="8552900157996372">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="8388666249477849" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="4797315301239146" type="BoxVersion">
+                            <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="173059805190117">
+                    <conditions>
+                        <condition id="5" name="Is downloading update" sid="7283280282392177" type="Browser" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="4876584861958048" type="BoxUpdate">
+                            <param id="0" name="Text">&quot;Downloading update...&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3941833123875757">
+                    <conditions>
+                        <condition id="5" inverted="1" name="Is downloading update" sid="5612952145734963" type="Browser" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="9771364045707793" type="BoxUpdate">
+                            <param id="0" name="Text">&quot;No update found.&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5572327741192827">
+                    <conditions>
+                        <condition id="6" name="On update ready" sid="3121925115330707" type="Browser" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="4376176110649875" type="BoxUpdate">
+                            <param id="0" name="Text">&quot;Game updated.&quot;</param>
+                        </action>
+                        <action id="0" name="Alert" sid="8257841672150426" type="Browser">
+                            <param id="0" name="Message">&quot;Fatty Bird has successfully installed updates just now. Click OK to restart the game.&quot;</param>
+                        </action>
+                        <action id="-21" name="Reset global variables" sid="7760626580645985" type="System" />
+                        <action id="-26" name="Restart layout" sid="3924358510897579" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" sid="9811500859949" title="Level">
+            <sub-events>
+                <event-block sid="6319144274646265">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="4954022158657692" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-24" name="Move to top" sid="9833000461962293" type="Bird" />
+                        <action id="-29" name="Move to object" sid="4809800641452692" type="Fence">
+                            <param id="0" name="Where">1</param>
+                            <param id="1" name="Object">Catapult</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="6041374160446595" type="Cloud">
+                            <param id="0" name="X">Self.X - 1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7873240842533457">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5788255167257852" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="3251242471869105" type="Catapult">
+                            <param id="0" name="X">Self.X - 50</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="6081094803145433" type="Fence">
+                            <param id="0" name="X">Self.X - 50</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="3273993378106313" type="Cloud">
+                            <param id="0" name="X">Self.X - 5</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="217191069382107" type="Bird">
+                            <param id="0" name="Speed">5</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8220960321974403">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="3655857557978187" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="3995765868070019" type="Bird">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="1691678856269526" type="Fence">
+                            <param id="0" name="X">Self.X - 10</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="2719126790327817" type="Bird">
+                            <param id="0" name="Speed">5</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5355235869583942">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="1589363174213189" type="Catapult">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-2000</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="6285294898157678" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4585555550641872" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="2139106194410908" type="Catapult" />
+                    </actions>
+                </event-block>
+                <event-block sid="3827349958685657">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="3089012996269451" type="Bird">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="Y co-ordinate">Bird.Height / 2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Set Y" sid="4606829313430493" type="Bird">
+                            <param id="0" name="Y">Bird.Height / 2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="1753248110488678" title="Input">
+            <sub-events>
+                <event-block sid="1687334871970976">
+                    <conditions>
+                        <condition id="-20" name="Is on mobile device" sid="1066935701853584" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="5544509281256432">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="1783667171977107" type="Touch">
+                                    <param id="0" name="Object">Bird</param>
+                                </condition>
+                                <condition id="-3" name="Is on-screen" sid="4982209833461271" type="Catapult" />
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="8812884965441513" type="Bird">
+                                    <param id="0" name="X">LayoutWidth / 2</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="8973795358976813" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4615260058788246">
+                            <conditions>
+                                <condition id="1" name="On any touch end" sid="5771698197263173" type="Touch" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="9" name="Set vector Y" sid="6357316821822238" type="Bird">
+                                    <param id="0" name="Vector Y">-200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="9006353977261778">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="576444574062346" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="1189588436249118">
+                            <conditions>
+                                <condition id="6" name="On object clicked" sid="2298288973610291" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                    <param id="1" name="Click type">0</param>
+                                    <param id="2" name="Object clicked">Bird</param>
+                                </condition>
+                                <condition id="-3" name="Is on-screen" sid="8650776270857312" type="Catapult" />
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="8020192535383912" type="Bird">
+                                    <param id="0" name="X">LayoutWidth / 2</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="1272479164824274" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7840411173956019">
+                            <conditions>
+                                <condition id="1" name="On any key pressed" sid="8983894207258469" type="Keyboard" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="9" name="Set vector Y" sid="5471528156046729" type="Bird">
+                                    <param id="0" name="Vector Y">-200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1904347318574769">
+                            <conditions>
+                                <condition id="1" name="On any click" sid="4404714174387165" type="Mouse" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="9" name="Set vector Y" sid="3197703332000495" type="Bird">
+                                    <param id="0" name="Vector Y">-200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="8109497946651133" title="Memory">
+            <sub-events>
+                <event-block sid="1866463417637534">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="7326968189147996" type="Cloud">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-Cloud.Width / 2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="8885551740741889" type="Cloud">
+                            <param id="0" name="X">LayoutWidth + (Cloud.Width / 2)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2872499286531183">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="1130305457058286" type="Fence">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-Fence.Width / 2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="7018530997197242" type="Fence">
+                            <param id="0" name="X">LayoutWidth + (Fence.Width / 2)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9738206444124256">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="9498574872784468" type="Bird">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">LayoutHeight + (Bird.Height / 2)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-21" name="Reset global variables" sid="5411218417788442" type="System" />
+                        <action id="-26" name="Restart layout" sid="5056620906555736" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

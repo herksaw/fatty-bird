@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Fatty Bird</name>
+    <description>A compound of Flappy Bird and Angry Birds.</description>
+    <version>0.0.0.1a</version>
+    <author>Herks Aw</author>
+    <author-email>herksaw@gmail.com</author-email>
+    <author-website>http://www.herksaw.com/</author-website>
+    <app-id>com.herksaw.fattybird</app-id>
+    <unique-id>23t1oylb4pprq</unique-id>
+    <saved-with-version>15600</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>1920</width>
+        <height>1080</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D web</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder expanded="1">
+        <object-type name="Background" sid="8813491448164489">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="0" repeatto="0" sid="8017653304362676" speed="0">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Bird" sid="1854986860796652">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Platform" sid="3173508080115014">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="0" repeatto="0" sid="2160192671823631" speed="0">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.501416" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Fence" sid="724648055729845">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="0" repeatto="0" sid="7624276487790204" speed="0">
+                    <frame duration="1" hotspotX="0.500293" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Cloud" sid="3874366016755797">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2666007642888281" speed="5">
+                    <frame duration="1" hotspotX="0.500526" hotspotY="0.501193" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Tree" sid="2100312603407765">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7182068484875181" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Catapult" sid="2553833849633395">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2081106593709911" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Rubber" sid="4830371114948172">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="0" repeatto="0" sid="58569735041861" speed="0">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.500732" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Touch" sid="4112995407632837">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="Function" sid="7703472384930081">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Keyboard" sid="3811877501357572">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="Mouse" sid="9454319364920837">
+            <plugin id="Mouse" />
+        </object-type>
+        <object-type name="BoxUpdate" sid="9938484988311744">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="BoxVersion" sid="2948488808436007">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Browser" sid="5905911776352121">
+            <plugin id="Browser" />
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder expanded="1">
+        <layout>Game Layout.xml</layout>
+    </layout-folder>
+    <event-folder expanded="1">
+        <event-sheet>Game Event.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Touch" uid="7">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Function" uid="8" />
+        <global-instance type="Keyboard" uid="11" />
+        <global-instance type="Mouse" uid="12" />
+        <global-instance type="Browser" uid="15" />
+    </global-instances>
+    <sounds-folder expanded="1" />
+    <music-folder expanded="1" />
+    <files-folder expanded="1">
+        <file-folder expanded="0" name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
