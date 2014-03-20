@@ -2,7 +2,7 @@
 <c2project>
     <name>Fatty Bird</name>
     <description>A compound of Flappy Bird and Angry Birds.</description>
-    <version>0.0.0.1a</version>
+    <version>0.0.0.2</version>
     <author>Herks Aw</author>
     <author-email>herksaw@gmail.com</author-email>
     <author-website>http://www.herksaw.com/</author-website>
@@ -13,12 +13,13 @@
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
     </used-behaviors>
     <used-effects />
@@ -102,6 +103,12 @@
         </object-type>
         <object-type name="Rubber" sid="4830371114948172">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="oldX" sid="4087958658355037" type="number" />
+                <instance-variable name="oldY" sid="3830276988009169" type="number" />
+                <instance-variable name="oldWidth" sid="8009592092504922" type="number" />
+                <instance-variable name="oldHeight" sid="2833295892628793" type="number" />
+            </instance-variables>
             <animation-folder expanded="1">
                 <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="0" repeatto="0" sid="58569735041861" speed="0">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -130,8 +137,24 @@
         <object-type name="Browser" sid="5905911776352121">
             <plugin id="Browser" />
         </object-type>
+        <object-type name="BoxDebug" sid="7947664124714905">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="Object" plugin-id="Sprite" sid="1547778972712362">
+            <members>
+                <member>Catapult</member>
+                <member>Fence</member>
+                <member>Rubber</member>
+            </members>
+            <behaviors>
+                <behavior-type name="8Direction" sid="3408122652879886">
+                    <behavior id="EightDir" />
+                </behavior-type>
+            </behaviors>
+        </family>
+    </families>
     <layout-folder expanded="1">
         <layout>Game Layout.xml</layout>
     </layout-folder>

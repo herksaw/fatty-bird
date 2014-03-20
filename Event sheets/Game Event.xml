@@ -3,6 +3,9 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Game Event</name>
     <events>
+        <variable constant="0" name="StretchPower" sid="6444032450920591" static="0" type="number">0</variable>
+        <variable constant="0" name="IsObjectSpeed" sid="4767010864345094" static="0" type="number">10</variable>
+        <variable constant="0" name="OnObjectSpeed" sid="7476720729238257" static="0" type="number">50</variable>
         <variable constant="0" name="OnFlying" sid="9729538707366253" static="0" type="number">0</variable>
         <variable constant="0" name="isFlying" sid="4182927447878241" static="0" type="number">0</variable>
         <event-group description="" sid="9362416301836017" title="System">
@@ -14,6 +17,9 @@
                     <actions>
                         <action id="0" name="Set text" sid="4797315301239146" type="BoxVersion">
                             <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
+                        </action>
+                        <action id="0" name="Set text" sid="8187280787202023" type="BoxDebug">
+                            <param id="0" name="Text">&quot;Mouse X:&quot; &amp; Mouse.X &amp; &quot; Power:&quot; &amp; StretchPower</param>
                         </action>
                     </actions>
                 </event-block>
@@ -54,9 +60,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="9811500859949" title="Level">
+        <event-group description="" sid="9811500859949" title="Level">
             <sub-events>
-                <event-block sid="6319144274646265">
+                <event-block disabled="1" sid="6319144274646265">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="4954022158657692" type="System" />
                     </conditions>
@@ -71,7 +77,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="7873240842533457">
+                <event-block disabled="1" sid="7873240842533457">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="5788255167257852" type="System">
                             <param id="0" name="Variable">OnFlying</param>
@@ -81,10 +87,10 @@
                     </conditions>
                     <actions>
                         <action id="-1" name="Set X" sid="3251242471869105" type="Catapult">
-                            <param id="0" name="X">Self.X - 50</param>
+                            <param id="0" name="X">Self.X - OnObjectSpeed</param>
                         </action>
                         <action id="-1" name="Set X" sid="6081094803145433" type="Fence">
-                            <param id="0" name="X">Self.X - 50</param>
+                            <param id="0" name="X">Self.X - OnObjectSpeed</param>
                         </action>
                         <action id="-1" name="Set X" sid="3273993378106313" type="Cloud">
                             <param id="0" name="X">Self.X - 5</param>
@@ -94,7 +100,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="8220960321974403">
+                <event-block disabled="1" sid="8220960321974403">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="3655857557978187" type="System">
                             <param id="0" name="Variable">isFlying</param>
@@ -107,14 +113,28 @@
                             <param id="0" name="State">1</param>
                         </action>
                         <action id="-1" name="Set X" sid="1691678856269526" type="Fence">
-                            <param id="0" name="X">Self.X - 10</param>
+                            <param id="0" name="X">Self.X - IsObjectSpeed</param>
                         </action>
                         <action id="6" name="Set speed" sid="2719126790327817" type="Bird">
                             <param id="0" name="Speed">5</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="5355235869583942">
+                <event-block disabled="1" sid="9516898544131507">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="1997142434298021" type="Catapult">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">-2000</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="4251411605191646" type="System">
+                            <param id="0" name="Variable">OnObjectSpeed</param>
+                            <param id="1" name="Value">0.1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1" sid="5355235869583942">
                     <conditions>
                         <condition id="-1" name="Compare X" sid="1589363174213189" type="Catapult">
                             <param id="0" name="Comparison">3</param>
@@ -133,6 +153,113 @@
                         <action id="-9" name="Destroy" sid="2139106194410908" type="Catapult" />
                     </actions>
                 </event-block>
+                <event-block sid="5734917065417035">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="2662493646171861" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="5804451549152119" type="Rubber">
+                            <param id="0" name="Instance variable">oldX</param>
+                            <param id="1" name="Value">Rubber.X + 250</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9381872321454782" type="Rubber">
+                            <param id="0" name="Instance variable">oldY</param>
+                            <param id="1" name="Value">Rubber.Y</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7635808019230193" type="Rubber">
+                            <param id="0" name="Instance variable">oldWidth</param>
+                            <param id="1" name="Value">Rubber.Width</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="8507830129750071" type="Rubber">
+                            <param id="0" name="Instance variable">oldHeight</param>
+                            <param id="1" name="Value">Rubber.Height</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5715816906139095">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="8816872334932381" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-24" name="Move to top" sid="4150682275857159" type="Bird" />
+                        <action id="-24" name="Move to top" sid="2146183964254611" type="Rubber" />
+                        <action id="-29" name="Move to object" sid="9952483454843883" type="Fence">
+                            <param id="0" name="Where">1</param>
+                            <param id="1" name="Object">Catapult</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="9184228206448388" type="Cloud">
+                            <param id="0" name="X">Self.X - 1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2463752409124453">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="6324719669942194" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="4844701462189651" type="Cloud">
+                            <param id="0" name="X">Self.X - 5</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="3453016331827918" type="Bird">
+                            <param id="0" name="Speed">5</param>
+                        </action>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="6662390949917497" type="Object">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action behavior="8Direction" id="5" name="Set acceleration" sid="5942778162723243" type="Object">
+                            <param id="0" name="Acceleration">3000 * StretchPower</param>
+                        </action>
+                        <action behavior="8Direction" id="4" name="Set max speed" sid="4923879160525516" type="Object">
+                            <param id="0" name="Max Speed">3 * StretchPower</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7492478343099985">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2441757755958601" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="7564246889099197" type="Bird">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="3148826259743819" type="Object">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="3967922075472119" type="Bird">
+                            <param id="0" name="Speed">5</param>
+                        </action>
+                        <action behavior="8Direction" id="4" name="Set max speed" sid="6748168849549933" type="Object">
+                            <param id="0" name="Max Speed">2.5 * StretchPower</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="104084418461301">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="222251901469924" type="Catapult">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-2000</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="7474741744082603" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3094744413316305" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="9141234278650232" type="Catapult" />
+                    </actions>
+                </event-block>
                 <event-block sid="3827349958685657">
                     <conditions>
                         <condition id="-2" name="Compare Y" sid="3089012996269451" type="Bird">
@@ -143,6 +270,42 @@
                     <actions>
                         <action id="-2" name="Set Y" sid="4606829313430493" type="Bird">
                             <param id="0" name="Y">Bird.Height / 2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4762998717497597">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="8136285304515476" type="Rubber">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">Rubber.oldX - 250</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="3199792962052379" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="5167773608603421" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="1906947653575575" type="Rubber">
+                            <param id="0" name="X">Rubber.oldX - 250</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3481853656987296">
+                    <conditions>
+                        <condition id="-5" name="Compare width" sid="7981552650594766" type="Rubber">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="Width">Rubber.oldWidth</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-5" name="Set width" sid="4008868773633858" type="Rubber">
+                            <param id="0" name="Width">Rubber.oldWidth</param>
                         </action>
                     </actions>
                 </event-block>
@@ -191,25 +354,6 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="1189588436249118">
-                            <conditions>
-                                <condition id="6" name="On object clicked" sid="2298288973610291" type="Mouse">
-                                    <param id="0" name="Mouse button">0</param>
-                                    <param id="1" name="Click type">0</param>
-                                    <param id="2" name="Object clicked">Bird</param>
-                                </condition>
-                                <condition id="-3" name="Is on-screen" sid="8650776270857312" type="Catapult" />
-                            </conditions>
-                            <actions>
-                                <action id="-1" name="Set X" sid="8020192535383912" type="Bird">
-                                    <param id="0" name="X">LayoutWidth / 2</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="1272479164824274" type="System">
-                                    <param id="0" name="Variable">OnFlying</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
                         <event-block sid="7840411173956019">
                             <conditions>
                                 <condition id="1" name="On any key pressed" sid="8983894207258469" type="Keyboard" />
@@ -227,6 +371,82 @@
                             <actions>
                                 <action behavior="Platform" id="9" name="Set vector Y" sid="3197703332000495" type="Bird">
                                     <param id="0" name="Vector Y">-200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4300185795149311">
+                            <conditions>
+                                <condition id="2" name="Mouse button is down" sid="9374988819460365" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="8777388481481463" type="Rubber">
+                                    <param id="0" name="Instance variable">oldX</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">Mouse.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="2428472948677103" type="Rubber">
+                                    <param id="0" name="X">(Mouse.X + Rubber.oldX) / 2</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="6416671453579533" type="Rubber">
+                                    <param id="0" name="Width">abs(Mouse.X - Rubber.oldX)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="1057063670980287" type="System">
+                                    <param id="0" name="Variable">StretchPower</param>
+                                    <param id="1" name="Value">abs(Mouse.X - Rubber.oldX)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5227745291027716">
+                            <conditions>
+                                <condition id="3" name="On button released" sid="3359624048134584" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="5532600646190509" type="System">
+                                    <param id="0" name="Variable">StretchPower</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="9871448460137207" type="Rubber">
+                                    <param id="0" name="X">Rubber.oldX - 250</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="7520480336920491" type="Rubber">
+                                    <param id="0" name="Width">Rubber.oldWidth</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="9373487616069106" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8883652776339312">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Mouse button is down" sid="7508247970946448" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                </condition>
+                                <condition id="7" inverted="1" name="Cursor is over object" sid="8157467370584149" type="Mouse">
+                                    <param id="0" name="Object">Rubber</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="797243652540506" type="System">
+                                    <param id="0" name="Variable">isFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="6419143903583303" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="8778247364754155" type="Rubber">
+                                    <param id="0" name="X">Rubber.oldX - 250</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="8646618679434319" type="Rubber">
+                                    <param id="0" name="Width">Rubber.oldWidth</param>
                                 </action>
                             </actions>
                         </event-block>
