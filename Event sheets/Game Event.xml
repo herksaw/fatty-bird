@@ -319,23 +319,6 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="5544509281256432">
-                            <conditions>
-                                <condition id="3" name="On touched object" sid="1783667171977107" type="Touch">
-                                    <param id="0" name="Object">Bird</param>
-                                </condition>
-                                <condition id="-3" name="Is on-screen" sid="4982209833461271" type="Catapult" />
-                            </conditions>
-                            <actions>
-                                <action id="-1" name="Set X" sid="8812884965441513" type="Bird">
-                                    <param id="0" name="X">LayoutWidth / 2</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="8973795358976813" type="System">
-                                    <param id="0" name="Variable">OnFlying</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
                         <event-block sid="4615260058788246">
                             <conditions>
                                 <condition id="1" name="On any touch end" sid="5771698197263173" type="Touch" />
@@ -343,6 +326,86 @@
                             <actions>
                                 <action behavior="Platform" id="9" name="Set vector Y" sid="6357316821822238" type="Bird">
                                     <param id="0" name="Vector Y">-200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4154626268963002">
+                            <conditions>
+                                <condition id="2" name="Is in touch" sid="4072280472967494" type="Touch" />
+                                <condition id="-7" name="Compare instance variable" sid="2792410949553259" type="Rubber">
+                                    <param id="0" name="Instance variable">oldX</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">Touch.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="4085521177076354" type="Rubber">
+                                    <param id="0" name="X">(Touch.X + Rubber.oldX) / 2</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="9851312469498749" type="Rubber">
+                                    <param id="0" name="Width">abs(Touch.X - Rubber.oldX)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="9464743155001438" type="System">
+                                    <param id="0" name="Variable">StretchPower</param>
+                                    <param id="1" name="Value">abs(Touch.X - Rubber.oldX)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9536869116275942">
+                            <conditions>
+                                <condition id="1" name="On any touch end" sid="2920677055502006" type="Touch" />
+                                <condition id="-14" name="Compare variable" sid="5959242540028655" type="System">
+                                    <param id="0" name="Variable">StretchPower</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="6376439611281748" type="System">
+                                    <param id="0" name="Variable">isFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="2562804470079741" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="1685794649711188" type="Rubber">
+                                    <param id="0" name="X">Rubber.oldX - 250</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="9338279895302511" type="Rubber">
+                                    <param id="0" name="Width">Rubber.oldWidth</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="217929973671633" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6627959021865028">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is in touch" sid="2194461551166469" type="Touch" />
+                                <condition id="4" inverted="1" name="Is touching object" sid="6050300842892037" type="Touch">
+                                    <param id="0" name="Object">Rubber</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="5232026652263836" type="System">
+                                    <param id="0" name="Variable">isFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="2892449396200872" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="9923321699342162" type="Rubber">
+                                    <param id="0" name="X">Rubber.oldX - 250</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="4028825268176561" type="Rubber">
+                                    <param id="0" name="Width">Rubber.oldWidth</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -406,6 +469,16 @@
                                 <condition id="-14" name="Compare variable" sid="5532600646190509" type="System">
                                     <param id="0" name="Variable">StretchPower</param>
                                     <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="1398138512066283" type="System">
+                                    <param id="0" name="Variable">isFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="7803543492430811" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
@@ -480,6 +553,17 @@
                         <action id="-1" name="Set X" sid="7018530997197242" type="Fence">
                             <param id="0" name="X">LayoutWidth + (Fence.Width / 2)</param>
                         </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1371333756672675">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="8408751690885186" type="Rubber">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-Rubber.Width / 2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="1431917108032999" type="Rubber" />
                     </actions>
                 </event-block>
                 <event-block sid="9738206444124256">
