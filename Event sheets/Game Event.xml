@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Game Event</name>
     <events>
+        <variable constant="0" name="RubberAngle" sid="4739780112670847" static="0" type="number">0</variable>
         <variable constant="0" name="Gravity" sid="3312967019028355" static="0" type="number">1000</variable>
         <variable constant="0" name="StretchPower" sid="6444032450920591" static="0" type="number">0</variable>
         <variable constant="0" name="IsObjectSpeed" sid="4767010864345094" static="0" type="number">10</variable>
@@ -20,7 +21,31 @@
                             <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
                         </action>
                         <action id="0" name="Set text" sid="8187280787202023" type="BoxDebug">
-                            <param id="0" name="Text">&quot;Mouse X:&quot; &amp; Mouse.X &amp; &quot; &quot; &amp; StretchPower</param>
+                            <param id="0" name="Text">Rubber.Angle &amp; &quot; &quot; &amp; (Mouse.Y / LayoutHeight) * 60</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4537479966386711">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="9108634111274038" type="Keyboard">
+                            <param id="0" name="Key">82 (R)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-18" name="Rotate clockwise" sid="3992016849456543" type="Rubber">
+                            <param id="0" name="Degrees">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2961641522137595">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="2867756663405214" type="Keyboard">
+                            <param id="0" name="Key">84 (T)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-19" name="Rotate counter-clockwise" sid="5133828210179001" type="Rubber">
+                            <param id="0" name="Degrees">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -382,6 +407,14 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
+                                <condition id="-2" name="Compare Y" sid="5308050871827744" type="Bird">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">Mouse.Y + 50</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="9950278879179963" type="Bird">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">Mouse.Y - 200</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-1" name="Set X" sid="4085521177076354" type="Rubber">
@@ -394,7 +427,47 @@
                                     <param id="0" name="Variable">StretchPower</param>
                                     <param id="1" name="Value">abs(Touch.X - Rubber.oldX)</param>
                                 </action>
+                                <action id="-9" name="Set value" sid="9006230554115657" type="System">
+                                    <param id="0" name="Variable">RubberAngle</param>
+                                    <param id="1" name="Value">(Mouse.Y / LayoutHeight) * 60</param>
+                                </action>
                             </actions>
+                            <sub-events>
+                                <event-block sid="74271405549098">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="8630416593122163" type="System">
+                                            <param id="0" name="Variable">RubberAngle</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">30</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="3193110753362459" type="Rubber">
+                                            <param id="0" name="Angle">360 - (RubberAngle - 30)</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="9963987646833713" type="Bird">
+                                            <param id="0" name="Angle">360 - (RubberAngle - 30)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="9628179655968113">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="1551649682984085" type="System">
+                                            <param id="0" name="Variable">RubberAngle</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">30</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="915056955595894" type="Rubber">
+                                            <param id="0" name="Angle">abs(30 - RubberAngle)</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="7006961854358839" type="Bird">
+                                            <param id="0" name="Angle">abs(30 - RubberAngle)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="9536869116275942">
                             <conditions>
@@ -522,12 +595,47 @@
                                     <param id="0" name="Variable">StretchPower</param>
                                     <param id="1" name="Value">abs(Mouse.X - Rubber.oldX)</param>
                                 </action>
-                                <action id="-21" name="Rotate toward position" sid="1674496112947622" type="Rubber">
-                                    <param id="0" name="Degrees">0</param>
-                                    <param id="1" name="X">Mouse.X</param>
-                                    <param id="2" name="Y">Mouse.Y</param>
+                                <action id="-9" name="Set value" sid="1770580226223752" type="System">
+                                    <param id="0" name="Variable">RubberAngle</param>
+                                    <param id="1" name="Value">(Mouse.Y / LayoutHeight) * 60</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block sid="8032108648610631">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="2770357367248163" type="System">
+                                            <param id="0" name="Variable">RubberAngle</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">30</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="2359474769991734" type="Rubber">
+                                            <param id="0" name="Angle">360 - (RubberAngle - 30)</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="6463808156362548" type="Bird">
+                                            <param id="0" name="Angle">360 - (RubberAngle - 30)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="6321072761690924">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="2971622178527548" type="System">
+                                            <param id="0" name="Variable">RubberAngle</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">30</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="631595860499475" type="Rubber">
+                                            <param id="0" name="Angle">abs(30 - RubberAngle)</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="8234184832628212" type="Bird">
+                                            <param id="0" name="Angle">abs(30 - RubberAngle)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="5227745291027716">
                             <conditions>
@@ -588,6 +696,16 @@
                                 </action>
                                 <action id="-5" name="Set width" sid="8646618679434319" type="Rubber">
                                     <param id="0" name="Width">Rubber.oldWidth</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="9246383788173064" type="System">
+                                    <param id="0" name="Variable">RubberAngle</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="3041016545067512" type="Rubber">
+                                    <param id="0" name="Angle">0</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="2817402736837433" type="Bird">
+                                    <param id="0" name="Angle">0</param>
                                 </action>
                             </actions>
                         </event-block>
