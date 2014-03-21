@@ -372,6 +372,16 @@
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">Touch.X</param>
                                 </condition>
+                                <condition id="-14" name="Compare variable" sid="4446813479365054" type="System">
+                                    <param id="0" name="Variable">isFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="5314312328640757" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-1" name="Set X" sid="4085521177076354" type="Rubber">
@@ -490,6 +500,16 @@
                                     <param id="0" name="Comparison">5</param>
                                     <param id="1" name="Y co-ordinate">Mouse.Y - 200</param>
                                 </condition>
+                                <condition id="-14" name="Compare variable" sid="3374120471080267" type="System">
+                                    <param id="0" name="Variable">isFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="9326480035633861" type="System">
+                                    <param id="0" name="Variable">OnFlying</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-1" name="Set X" sid="2428472948677103" type="Rubber">
@@ -501,6 +521,11 @@
                                 <action id="-9" name="Set value" sid="1057063670980287" type="System">
                                     <param id="0" name="Variable">StretchPower</param>
                                     <param id="1" name="Value">abs(Mouse.X - Rubber.oldX)</param>
+                                </action>
+                                <action id="-21" name="Rotate toward position" sid="1674496112947622" type="Rubber">
+                                    <param id="0" name="Degrees">0</param>
+                                    <param id="1" name="X">Mouse.X</param>
+                                    <param id="2" name="Y">Mouse.Y</param>
                                 </action>
                             </actions>
                         </event-block>
