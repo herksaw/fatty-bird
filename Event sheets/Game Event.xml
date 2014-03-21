@@ -257,7 +257,7 @@
                     <conditions>
                         <condition id="-1" name="Compare X" sid="222251901469924" type="Catapult">
                             <param id="0" name="Comparison">3</param>
-                            <param id="1" name="X co-ordinate">-2000</param>
+                            <param id="1" name="X co-ordinate">-1000</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -481,6 +481,14 @@
                                     <param id="0" name="Instance variable">oldX</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">Mouse.X</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="1830968462110557" type="Bird">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">Mouse.Y + 50</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="4343520038740938" type="Bird">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">Mouse.Y - 200</param>
                                 </condition>
                             </conditions>
                             <actions>
