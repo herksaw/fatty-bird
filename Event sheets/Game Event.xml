@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Game Event</name>
     <events>
+        <variable constant="0" name="Gravity" sid="3312967019028355" static="0" type="number">1000</variable>
         <variable constant="0" name="StretchPower" sid="6444032450920591" static="0" type="number">0</variable>
         <variable constant="0" name="IsObjectSpeed" sid="4767010864345094" static="0" type="number">10</variable>
         <variable constant="0" name="OnObjectSpeed" sid="7476720729238257" static="0" type="number">50</variable>
@@ -19,7 +20,7 @@
                             <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
                         </action>
                         <action id="0" name="Set text" sid="8187280787202023" type="BoxDebug">
-                            <param id="0" name="Text">&quot;Mouse X:&quot; &amp; Mouse.X &amp; &quot; Power:&quot; &amp; StretchPower</param>
+                            <param id="0" name="Text">&quot;Mouse X:&quot; &amp; Mouse.X &amp; &quot; &quot; &amp; StretchPower</param>
                         </action>
                     </actions>
                 </event-block>
@@ -239,6 +240,17 @@
                         <action behavior="8Direction" id="4" name="Set max speed" sid="6748168849549933" type="Object">
                             <param id="0" name="Max Speed">2.5 * StretchPower</param>
                         </action>
+                        <action behavior="Platform" id="5" name="Set gravity" sid="8779078218834499" type="Bird">
+                            <param id="0" name="Gravity">Gravity</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="4723543637275369" type="System">
+                            <param id="0" name="Variable">StretchPower</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="1625225910873629" type="System">
+                            <param id="0" name="Variable">Gravity</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="104084418461301">
@@ -294,6 +306,10 @@
                         <action id="-1" name="Set X" sid="1906947653575575" type="Rubber">
                             <param id="0" name="X">Rubber.oldX - 250</param>
                         </action>
+                        <action id="-9" name="Set value" sid="1802134759767168" type="System">
+                            <param id="0" name="Variable">StretchPower</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="3481853656987296">
@@ -306,6 +322,25 @@
                     <actions>
                         <action id="-5" name="Set width" sid="4008868773633858" type="Rubber">
                             <param id="0" name="Width">Rubber.oldWidth</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6527939791360489">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="3796293007396466" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="1473597333194666" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="2654442153448905" type="Bird">
+                            <param id="0" name="X">Rubber.X - (Rubber.Width / 8)</param>
                         </action>
                     </actions>
                 </event-block>
