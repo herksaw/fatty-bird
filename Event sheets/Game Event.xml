@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Game Event</name>
     <events>
+        <variable constant="0" name="MinScroll" sid="8543247890015661" static="0" type="number">1100</variable>
+        <variable constant="0" name="BirdAngle" sid="5429661229385964" static="0" type="number">0</variable>
         <variable constant="0" name="RubberAngle" sid="4739780112670847" static="0" type="number">0</variable>
         <variable constant="0" name="Gravity" sid="3312967019028355" static="0" type="number">1000</variable>
         <variable constant="0" name="StretchPower" sid="6444032450920591" static="0" type="number">0</variable>
@@ -21,7 +23,7 @@
                             <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
                         </action>
                         <action id="0" name="Set text" sid="8187280787202023" type="BoxDebug">
-                            <param id="0" name="Text">Rubber.Angle &amp; &quot; &quot; &amp; (Mouse.Y / LayoutHeight) * 60</param>
+                            <param id="0" name="Text">Mouse.X &amp; &quot;  &quot; &amp; Rubber.oldX</param>
                         </action>
                     </actions>
                 </event-block>
@@ -44,8 +46,8 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-19" name="Rotate counter-clockwise" sid="5133828210179001" type="Rubber">
-                            <param id="0" name="Degrees">1</param>
+                        <action id="-5" name="Set width" sid="65111059215107" type="Rubber">
+                            <param id="0" name="Width">Self.Width + 10</param>
                         </action>
                     </actions>
                 </event-block>
@@ -88,97 +90,6 @@
         </event-group>
         <event-group description="" sid="9811500859949" title="Level">
             <sub-events>
-                <event-block disabled="1" sid="6319144274646265">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="4954022158657692" type="System" />
-                    </conditions>
-                    <actions>
-                        <action id="-24" name="Move to top" sid="9833000461962293" type="Bird" />
-                        <action id="-29" name="Move to object" sid="4809800641452692" type="Fence">
-                            <param id="0" name="Where">1</param>
-                            <param id="1" name="Object">Catapult</param>
-                        </action>
-                        <action id="-1" name="Set X" sid="6041374160446595" type="Cloud">
-                            <param id="0" name="X">Self.X - 1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1" sid="7873240842533457">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="5788255167257852" type="System">
-                            <param id="0" name="Variable">OnFlying</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-1" name="Set X" sid="3251242471869105" type="Catapult">
-                            <param id="0" name="X">Self.X - OnObjectSpeed</param>
-                        </action>
-                        <action id="-1" name="Set X" sid="6081094803145433" type="Fence">
-                            <param id="0" name="X">Self.X - OnObjectSpeed</param>
-                        </action>
-                        <action id="-1" name="Set X" sid="3273993378106313" type="Cloud">
-                            <param id="0" name="X">Self.X - 5</param>
-                        </action>
-                        <action id="6" name="Set speed" sid="217191069382107" type="Bird">
-                            <param id="0" name="Speed">5</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1" sid="8220960321974403">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="3655857557978187" type="System">
-                            <param id="0" name="Variable">isFlying</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="Platform" id="11" name="Set enabled" sid="3995765868070019" type="Bird">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action id="-1" name="Set X" sid="1691678856269526" type="Fence">
-                            <param id="0" name="X">Self.X - IsObjectSpeed</param>
-                        </action>
-                        <action id="6" name="Set speed" sid="2719126790327817" type="Bird">
-                            <param id="0" name="Speed">5</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1" sid="9516898544131507">
-                    <conditions>
-                        <condition id="-1" name="Compare X" sid="1997142434298021" type="Catapult">
-                            <param id="0" name="Comparison">5</param>
-                            <param id="1" name="X co-ordinate">-2000</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-11" name="Subtract from" sid="4251411605191646" type="System">
-                            <param id="0" name="Variable">OnObjectSpeed</param>
-                            <param id="1" name="Value">0.1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1" sid="5355235869583942">
-                    <conditions>
-                        <condition id="-1" name="Compare X" sid="1589363174213189" type="Catapult">
-                            <param id="0" name="Comparison">3</param>
-                            <param id="1" name="X co-ordinate">-2000</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" sid="6285294898157678" type="System">
-                            <param id="0" name="Variable">OnFlying</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4585555550641872" type="System">
-                            <param id="0" name="Variable">isFlying</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="2139106194410908" type="Catapult" />
-                    </actions>
-                </event-block>
                 <event-block sid="5734917065417035">
                     <conditions>
                         <condition id="-2" name="On start of layout" sid="2662493646171861" type="System" />
@@ -186,7 +97,7 @@
                     <actions>
                         <action id="-10" name="Set value" sid="5804451549152119" type="Rubber">
                             <param id="0" name="Instance variable">oldX</param>
-                            <param id="1" name="Value">Rubber.X + 250</param>
+                            <param id="1" name="Value">Rubber.X</param>
                         </action>
                         <action id="-10" name="Set value" sid="9381872321454782" type="Rubber">
                             <param id="0" name="Instance variable">oldY</param>
@@ -199,6 +110,9 @@
                         <action id="-10" name="Set value" sid="8507830129750071" type="Rubber">
                             <param id="0" name="Instance variable">oldHeight</param>
                             <param id="1" name="Value">Rubber.Height</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="4663242795633322" type="Rubber">
+                            <param id="0" name="X">Rubber.oldX</param>
                         </action>
                     </actions>
                 </event-block>
@@ -242,6 +156,12 @@
                         <action behavior="8Direction" id="4" name="Set max speed" sid="4923879160525516" type="Object">
                             <param id="0" name="Max Speed">3 * StretchPower</param>
                         </action>
+                        <action id="-8" name="Set angle" sid="2612764867851001" type="Bird">
+                            <param id="0" name="Angle">BirdAngle</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="1290728900030298" type="Bird">
+                            <param id="0" name="Angle">BirdAngle</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="7492478343099985">
@@ -280,10 +200,7 @@
                 </event-block>
                 <event-block sid="104084418461301">
                     <conditions>
-                        <condition id="-1" name="Compare X" sid="222251901469924" type="Catapult">
-                            <param id="0" name="Comparison">3</param>
-                            <param id="1" name="X co-ordinate">-1000</param>
-                        </condition>
+                        <condition id="-4" name="Is outside layout" sid="222251901469924" type="Catapult" />
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="7474741744082603" type="System">
@@ -297,24 +214,65 @@
                         <action id="-9" name="Destroy" sid="9141234278650232" type="Catapult" />
                     </actions>
                 </event-block>
-                <event-block sid="3827349958685657">
+                <event-block sid="6631617101003332">
                     <conditions>
-                        <condition id="-2" name="Compare Y" sid="3089012996269451" type="Bird">
-                            <param id="0" name="Comparison">3</param>
-                            <param id="1" name="Y co-ordinate">Bird.Height / 2</param>
+                        <condition id="-1" name="Compare X" sid="4087512411626342" type="Bird">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth / 2</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-2" name="Set Y" sid="4606829313430493" type="Bird">
-                            <param id="0" name="Y">Bird.Height / 2</param>
+                        <action id="-1" name="Set X" sid="8837516336348312" type="Bird">
+                            <param id="0" name="X">LayoutWidth / 2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1829569779480482">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="198590892530429" type="Bird">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">MinScroll</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="6029434196633386" type="System">
+                            <param id="0" name="Variable">MinScroll</param>
+                            <param id="1" name="Value">Bird.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="5595669697492751">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4951162093926341" type="System">
+                            <param id="0" name="Variable">OnFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8876433287440826" type="System">
+                            <param id="0" name="Variable">isFlying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-7" name="Scroll to position" sid="6323304084023572" type="System">
+                            <param id="0" name="X">LayoutWidth / 2</param>
+                            <param id="1" name="Y">MinScroll</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="2423729210244429" type="Background">
+                            <param id="0" name="Y">ViewportTop(&quot;Game&quot;) - 100</param>
                         </action>
                     </actions>
                 </event-block>
                 <event-block sid="4762998717497597">
                     <conditions>
-                        <condition id="-1" name="Compare X" sid="8136285304515476" type="Rubber">
-                            <param id="0" name="Comparison">5</param>
-                            <param id="1" name="X co-ordinate">Rubber.oldX - 250</param>
+                        <condition id="-7" name="Compare instance variable" sid="9188290030266326" type="Rubber">
+                            <param id="0" name="Instance variable">oldX</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">Mouse.X</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Mouse button is down" sid="6904975718115079" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
                         </condition>
                         <condition id="-14" name="Compare variable" sid="3199792962052379" type="System">
                             <param id="0" name="Variable">isFlying</param>
@@ -328,25 +286,22 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-1" name="Set X" sid="1906947653575575" type="Rubber">
-                            <param id="0" name="X">Rubber.oldX - 250</param>
-                        </action>
                         <action id="-9" name="Set value" sid="1802134759767168" type="System">
                             <param id="0" name="Variable">StretchPower</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                    </actions>
-                </event-block>
-                <event-block sid="3481853656987296">
-                    <conditions>
-                        <condition id="-5" name="Compare width" sid="7981552650594766" type="Rubber">
-                            <param id="0" name="Comparison">3</param>
-                            <param id="1" name="Width">Rubber.oldWidth</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-5" name="Set width" sid="4008868773633858" type="Rubber">
+                        <action id="-5" name="Set width" sid="722758132679624" type="Rubber">
                             <param id="0" name="Width">Rubber.oldWidth</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9495932180847468" type="System">
+                            <param id="0" name="Variable">RubberAngle</param>
+                            <param id="1" name="Value">180</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="908439569760066" type="Rubber">
+                            <param id="0" name="Angle">0</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="2413354711530716" type="Bird">
+                            <param id="0" name="Angle">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -365,7 +320,10 @@
                     </conditions>
                     <actions>
                         <action id="-1" name="Set X" sid="2654442153448905" type="Bird">
-                            <param id="0" name="X">Rubber.X - (Rubber.Width / 8)</param>
+                            <param id="0" name="X">Rubber.ImagePointX(&quot;Real&quot;) + Bird.Width / 2</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="9980118045530248" type="Bird">
+                            <param id="0" name="Y">Rubber.ImagePointY(&quot;Real&quot;)</param>
                         </action>
                     </actions>
                 </event-block>
@@ -373,7 +331,7 @@
         </event-group>
         <event-group description="" sid="1753248110488678" title="Input">
             <sub-events>
-                <event-block sid="1687334871970976">
+                <event-block collapsed="1" sid="1687334871970976">
                     <conditions>
                         <condition id="-20" name="Is on mobile device" sid="1066935701853584" type="System" />
                     </conditions>
@@ -541,7 +499,7 @@
                             </conditions>
                             <actions>
                                 <action behavior="Platform" id="9" name="Set vector Y" sid="5471528156046729" type="Bird">
-                                    <param id="0" name="Vector Y">-200</param>
+                                    <param id="0" name="Vector Y">-500</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -555,83 +513,115 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="4300185795149311">
+                        <event-block sid="3770377684745157">
                             <conditions>
-                                <condition id="2" name="Mouse button is down" sid="9374988819460365" type="Mouse">
+                                <condition id="2" name="Mouse button is down" sid="6669312191214319" type="Mouse">
                                     <param id="0" name="Mouse button">0</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" sid="8777388481481463" type="Rubber">
+                                <condition id="-7" name="Compare instance variable" sid="4343809956856758" type="Rubber">
                                     <param id="0" name="Instance variable">oldX</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">Mouse.X</param>
                                 </condition>
-                                <condition id="-2" name="Compare Y" sid="1830968462110557" type="Bird">
-                                    <param id="0" name="Comparison">3</param>
-                                    <param id="1" name="Y co-ordinate">Mouse.Y + 50</param>
-                                </condition>
-                                <condition id="-2" name="Compare Y" sid="4343520038740938" type="Bird">
-                                    <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="Y co-ordinate">Mouse.Y - 200</param>
-                                </condition>
-                                <condition id="-14" name="Compare variable" sid="3374120471080267" type="System">
+                                <condition id="-14" name="Compare variable" sid="2512945372873285" type="System">
                                     <param id="0" name="Variable">isFlying</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
-                                <condition id="-14" name="Compare variable" sid="9326480035633861" type="System">
+                                <condition id="-14" name="Compare variable" sid="3056435376459993" type="System">
                                     <param id="0" name="Variable">OnFlying</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
+                                <condition id="-2" name="Compare Y" sid="9648859789601355" type="Rubber">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">Mouse.Y - 150</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="6436865771421731" type="Rubber">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">Mouse.Y + 150</param>
+                                </condition>
                             </conditions>
                             <actions>
-                                <action id="-1" name="Set X" sid="2428472948677103" type="Rubber">
+                                <action disabled="1" id="-1" name="Set X" sid="2949217676023585" type="Rubber">
                                     <param id="0" name="X">(Mouse.X + Rubber.oldX) / 2</param>
                                 </action>
-                                <action id="-5" name="Set width" sid="6416671453579533" type="Rubber">
+                                <action disabled="1" id="-1" name="Set X" sid="2336555294086282" type="Rubber">
+                                    <param id="0" name="X">Rubber.oldX</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="8544749157064443" type="Rubber">
                                     <param id="0" name="Width">abs(Mouse.X - Rubber.oldX)</param>
                                 </action>
-                                <action id="-9" name="Set value" sid="1057063670980287" type="System">
+                                <action id="-9" name="Set value" sid="4177083746461773" type="System">
                                     <param id="0" name="Variable">StretchPower</param>
                                     <param id="1" name="Value">abs(Mouse.X - Rubber.oldX)</param>
                                 </action>
-                                <action id="-9" name="Set value" sid="1770580226223752" type="System">
+                                <action id="-9" name="Set value" sid="7552691198481517" type="System">
                                     <param id="0" name="Variable">RubberAngle</param>
-                                    <param id="1" name="Value">(Mouse.Y / LayoutHeight) * 60</param>
+                                    <param id="1" name="Value">(Mouse.Y / LayoutHeight) * 360</param>
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="8032108648610631">
+                                <event-block sid="3335552239332243">
                                     <conditions>
-                                        <condition id="-14" name="Compare variable" sid="2770357367248163" type="System">
+                                        <condition id="-14" name="Compare variable" sid="671193688812856" type="System">
                                             <param id="0" name="Variable">RubberAngle</param>
                                             <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">30</param>
+                                            <param id="2" name="Value">180</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-8" name="Set angle" sid="2359474769991734" type="Rubber">
-                                            <param id="0" name="Angle">360 - (RubberAngle - 30)</param>
+                                        <action id="-8" name="Set angle" sid="3725440180773597" type="Rubber">
+                                            <param id="0" name="Angle">360 - (RubberAngle - 180)</param>
                                         </action>
-                                        <action id="-8" name="Set angle" sid="6463808156362548" type="Bird">
-                                            <param id="0" name="Angle">360 - (RubberAngle - 30)</param>
+                                        <action id="-8" name="Set angle" sid="196741485533976" type="Bird">
+                                            <param id="0" name="Angle">360 - (RubberAngle - 180)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="5831136341965394" type="System">
+                                            <param id="0" name="Variable">BirdAngle</param>
+                                            <param id="1" name="Value">360 - (RubberAngle - 180)</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="6321072761690924">
+                                <event-block sid="5219761037974571">
                                     <conditions>
-                                        <condition id="-14" name="Compare variable" sid="2971622178527548" type="System">
+                                        <condition id="-14" name="Compare variable" sid="6519067626844518" type="System">
                                             <param id="0" name="Variable">RubberAngle</param>
                                             <param id="1" name="Comparison">2</param>
-                                            <param id="2" name="Value">30</param>
+                                            <param id="2" name="Value">180</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-8" name="Set angle" sid="631595860499475" type="Rubber">
-                                            <param id="0" name="Angle">abs(30 - RubberAngle)</param>
+                                        <action id="-8" name="Set angle" sid="9963331569602336" type="Rubber">
+                                            <param id="0" name="Angle">abs(180 - RubberAngle)</param>
                                         </action>
-                                        <action id="-8" name="Set angle" sid="8234184832628212" type="Bird">
-                                            <param id="0" name="Angle">abs(30 - RubberAngle)</param>
+                                        <action id="-8" name="Set angle" sid="162632444401207" type="Bird">
+                                            <param id="0" name="Angle">abs(180 - RubberAngle)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="5980066174285582" type="System">
+                                            <param id="0" name="Variable">BirdAngle</param>
+                                            <param id="1" name="Value">abs(180 - RubberAngle)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="7458478008644697">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="3787561196261655" type="System">
+                                            <param id="0" name="Variable">RubberAngle</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">180</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="8327213640530213" type="Rubber">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="4837060420706283" type="Bird">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="6431227920062009" type="System">
+                                            <param id="0" name="Variable">BirdAngle</param>
+                                            <param id="1" name="Value">0</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -659,9 +649,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-1" name="Set X" sid="9871448460137207" type="Rubber">
-                                    <param id="0" name="X">Rubber.oldX - 250</param>
-                                </action>
                                 <action id="-5" name="Set width" sid="7520480336920491" type="Rubber">
                                     <param id="0" name="Width">Rubber.oldWidth</param>
                                 </action>
@@ -671,12 +658,12 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="8883652776339312">
+                        <event-block disabled="1" sid="8883652776339312">
                             <conditions>
                                 <condition id="2" inverted="1" name="Mouse button is down" sid="7508247970946448" type="Mouse">
                                     <param id="0" name="Mouse button">0</param>
                                 </condition>
-                                <condition id="7" inverted="1" name="Cursor is over object" sid="8157467370584149" type="Mouse">
+                                <condition disabled="1" id="7" inverted="1" name="Cursor is over object" sid="8157467370584149" type="Mouse">
                                     <param id="0" name="Object">Rubber</param>
                                 </condition>
                                 <condition id="-14" name="Compare variable" sid="797243652540506" type="System">
@@ -691,15 +678,15 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-1" name="Set X" sid="8778247364754155" type="Rubber">
-                                    <param id="0" name="X">Rubber.oldX - 250</param>
+                                <action disabled="1" id="-1" name="Set X" sid="8778247364754155" type="Rubber">
+                                    <param id="0" name="X">Rubber.oldX</param>
                                 </action>
                                 <action id="-5" name="Set width" sid="8646618679434319" type="Rubber">
                                     <param id="0" name="Width">Rubber.oldWidth</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="9246383788173064" type="System">
                                     <param id="0" name="Variable">RubberAngle</param>
-                                    <param id="1" name="Value">0</param>
+                                    <param id="1" name="Value">180</param>
                                 </action>
                                 <action id="-8" name="Set angle" sid="3041016545067512" type="Rubber">
                                     <param id="0" name="Angle">0</param>
@@ -713,7 +700,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="8109497946651133" title="Memory">
+        <event-group collapsed="1" description="" sid="8109497946651133" title="Memory">
             <sub-events>
                 <event-block sid="1866463417637534">
                     <conditions>
